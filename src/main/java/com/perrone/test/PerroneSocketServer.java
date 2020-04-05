@@ -9,6 +9,15 @@ import java.net.Socket;
 import com.perrone.test.processors.Processor;
 import com.perrone.test.processors.ProcessorFactory;
 
+/**
+ * @author dschellb
+ * 
+ * This the socket server that listens on the specified port.  It receives a message packet
+ * (See README.md file for message structure).  It uses the first byte to determine what 
+ * processor to call and than delegates to the processor to calculate the matrix sum which 
+ * it returns as an array of bytes with the same message format.
+ *
+ */
 public class PerroneSocketServer implements Runnable {
 
 	private ServerSocket serverSocket;

@@ -3,6 +3,12 @@ package com.perrone.test;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * @author dschellb
+ * Main class to start the socket server.  If no parameter is specified, server listens on
+ * port 6666.  This default can be overridden by adding a command line parameter
+ *
+ */
 public class SocketRunner {
 
 	public static void main(String[] args) {

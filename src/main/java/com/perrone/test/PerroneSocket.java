@@ -7,6 +7,15 @@ import java.net.Socket;
 
 import com.perrone.test.util.SocketUtils;
 
+/**
+ * @author dschellb
+ * 
+ * This is the client which accepts an array of bytes according to the message format 
+ * specified in the README document.  It receives an array of bytes from the server 
+ * representing the sum of N matrixes.  Client than calls a SocketUtils function to
+ * convert the byte array  to  a int array of 2 dimensions
+ *
+ */
 public class PerroneSocket {
 	
 	private int port=Constants.DEFAULT_PORT;

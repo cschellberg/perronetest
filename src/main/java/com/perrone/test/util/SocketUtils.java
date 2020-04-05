@@ -5,6 +5,13 @@ import java.util.Arrays;
 import com.perrone.test.Constants;
 import com.perrone.test.exceptions.InvalidDataFormat;
 
+/**
+ * @author dschellb
+ * 
+ * This the main utility class for the server and client. It deals with int and byte 
+ * array conversion
+ *
+ */
 public class SocketUtils {
 	public static byte[] toByteArray(int value) {
 		return new byte[] { (byte) (value >> 24), (byte) (value >> 16), (byte) (value >> 8), (byte) value };
