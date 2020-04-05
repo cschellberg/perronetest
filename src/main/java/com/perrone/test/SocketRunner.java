@@ -7,12 +7,12 @@ public class SocketRunner {
 
 	public static void main(String[] args) {
 		PerroneSocketServer perroneSocketServer = null;
-		int port=Constants.DEFAULT_PORT;
-		if ( args.length > 0) {
+		int port = Constants.DEFAULT_PORT;
+		if (args.length > 0) {
 			try {
-			port=Integer.parseInt(args[0]);
-			}catch(Exception ex) {
-				System.out.println("Unable to convert "+args[0]+" to an integer. Exiting...");
+				port = Integer.parseInt(args[0]);
+			} catch (Exception ex) {
+				System.out.println("Unable to convert " + args[0] + " to an integer. Exiting...");
 				System.exit(Constants.INVALID_PORT_SPECIFIED);
 			}
 		}
@@ -22,7 +22,7 @@ public class SocketRunner {
 			thread.start();
 
 		} catch (IOException ex) {
-			System.out.println("Unable to start socket server because "+ex.getMessage());
+			System.out.println("Unable to start socket server because " + ex.getMessage());
 		}
 
 		Scanner scanner = new Scanner(System.in);
@@ -32,11 +32,14 @@ public class SocketRunner {
 			command = scanner.next();
 		}
 		try {
-			perroneSocketServer.close();
+			if (perroneSocketServer != null) {
+				perroneSocketServer.close();
+			}
 		} catch (IOException ex) {
 			System.out.println("Unable to stop socket server because " + ex.getMessage());
 
 		}
+		scanner.close();
 	}
 
 }
