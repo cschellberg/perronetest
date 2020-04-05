@@ -49,9 +49,13 @@ public class PerroneSocketTest {
 		PerroneSocket perroneSocket = new PerroneSocket();
 		int[][] testArray1 = new int[][] { { 200, 150, 100, 50, 8 }, { 200, 150, 100, 50, 8 } };
 		int[][] testArray2 = new int[][] { { 5, 1, 3, 50, 18 }, { 5, 1, 3, 50, 18 } };
+		int[][] testArray3 = new int[][] { { -200, -150, -100, -50, -8 }, { -200, -150, -100, -50, -8 } };
 		int[][] matrixSum = perroneSocket.connectToServerSocket(Constants.MATRIX_PROCESSOR,
 				SocketUtils.convertToBytes(Constants.MATRIX_PROCESSOR, testArray1, testArray1));
 		validateMatrixSum(matrixSum, testArray1);
+		matrixSum = perroneSocket.connectToServerSocket(Constants.MATRIX_PROCESSOR,
+				SocketUtils.convertToBytes(Constants.MATRIX_PROCESSOR, testArray1, testArray3));
+		validateMatrixSumWithNegativeNumbers(matrixSum);
 		matrixSum = perroneSocket.connectToServerSocket(Constants.MATRIX_PROCESSOR,
 				SocketUtils.convertToBytes(Constants.MATRIX_PROCESSOR, testArray2, testArray2));
 		validateMatrixSum(matrixSum, testArray2);
@@ -59,6 +63,15 @@ public class PerroneSocketTest {
 				SocketUtils.convertToBytes(Constants.MATRIX_PROCESSOR, new int[][] {}));
 		matrixSum = perroneSocket.connectToServerSocket(Constants.MATRIX_PROCESSOR, null);
 
+	}
+
+	private void validateMatrixSumWithNegativeNumbers(int[][] matrixSum) {
+		for (int ii = 0; ii < matrixSum.length; ii++) {
+			for (int jj = 0; jj < matrixSum[ii].length; jj++) {
+				int actualValue = matrixSum[ii][jj];
+				assertEquals(0, actualValue);
+			}
+		}
 	}
 
 	private void validateMatrixSum(int[][] matrixSum, int[][] testArray1) {

@@ -92,12 +92,12 @@ public class SocketUtils {
 		return 4 * rows * columns * intArrays.length + Constants.HEADER_BYTES;
 	}
 
-	public static byte[] convertToBytes(byte[] headerBytes, int[][] array) {
-		int total = headerBytes.length + array.length * array[0].length * 4;
+	public static byte[] convertToBytes(byte[] headerBytes, int[][] matrix) {
+		int total = headerBytes.length + matrix.length * matrix[0].length * 4;
 		byte[] retArray = new byte[total];
 		copyToOffset(retArray, headerBytes, 0);
 		int offset = Constants.BEGIN_DATA;
-		for (int[] columns : array) {
+		for (int[] columns : matrix) {
 			for (int value : columns) {
 				byte[] tmpArray = toByteArray(value);
 				copyToOffset(retArray, tmpArray, offset);
