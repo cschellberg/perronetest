@@ -1,5 +1,6 @@
 package com.perrone.test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -28,9 +29,14 @@ public class PerroneSocket {
 			os.write(input);
 			os.flush();
 			InputStream is = socket.getInputStream();
-			byte[] response = new byte[10000];
-			is.read(response);
-			int[][] retArray = SocketUtils.convertToIntArrays(response);
+			int bytesRead;
+			byte[] responseBuffer = new byte[1000];
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			while ((bytesRead=is.read(responseBuffer)) != -1) {
+				 buffer.write(responseBuffer, 0, bytesRead);
+			}
+			buffer.flush();
+			int[][] retArray = SocketUtils.convertToIntArrays(buffer.toByteArray());
 			return retArray;
 		} catch (Exception ex) {
 			System.out.println("Unable to send message to socket because" + ex.getMessage());
