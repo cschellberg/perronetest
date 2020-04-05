@@ -23,5 +23,29 @@ public class SocketUtilsTest {
 		}
 		assertEquals(expectedTotal, actualTotal);
 	}
+	
+	@Test 
+	public void testIntByteConversions() {
+		int expectedValue=234;
+		byte[] output=SocketUtils.toByteArray(expectedValue);
+		int actualValue=SocketUtils.fromByteArray(output);
+		assertEquals(expectedValue, actualValue);
+		expectedValue=-234;
+		output=SocketUtils.toByteArray(expectedValue);
+		actualValue=SocketUtils.fromByteArray(output);
+		assertEquals(expectedValue, actualValue);
+	}
+	
+	@Test
+	public void testConvertToInts() {
+		byte[] input=new byte[] {0,0,0,1,0,0,0,2,0,0,0,3,0,0,0,4,1,1,1,1};
+		int [] output= SocketUtils.convertToInts(input);
+		assertEquals(5,output.length);
+		//first 4 numbers are sequence 1,2,3,4 last one is not
+		for ( int ii=0;ii<output.length -1;ii++) {
+			assertEquals(ii+1,output[ii]);
+		}
+		assertEquals(16843009,output[output.length-1]);
+	}
 
 }
