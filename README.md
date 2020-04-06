@@ -24,3 +24,7 @@ Both client and server sockets are agnostic regarding message format.  There onl
 The class with the main method is the SocketRunner class. It takes an optional parameter to specify the port that the server will listen on.  If no port is passed in server defaults to port 6666.
 
 java -jar dschellberg-0.0.1-SNAPSHOT.jar
+
+### Addendum
+
+There is also an implementation use SocketChannels.  This should give greater throughput because there are ten channels processing requests.  When using the SocketChannel implementation and END_OF_MESSAGE must be added to the end of each message.  SocketRunner uses the standard socket implementation which does not require this.
