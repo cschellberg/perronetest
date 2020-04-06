@@ -10,6 +10,6 @@ public class Constants {
 	public static final int COLUMN_OFFSET = 9;// integer 4 bytes
 	public static final int ROW_OFFSET = 5;// integer 4 bytes
 	public static final int BEGIN_DATA = 13;// integer 4 bytes
-	public static final int DEFAULT_PORT=66;
+	public static final int DEFAULT_PORT=6666;
 	public static final int INVALID_PORT_SPECIFIED = 1;
 }
