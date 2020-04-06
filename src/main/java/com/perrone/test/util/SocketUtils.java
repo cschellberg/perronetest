@@ -139,6 +139,9 @@ public class SocketUtils {
 	}
 
 	public static boolean endOfMessage(ByteBuffer byteBuffer) {
+		if ( byteBuffer == null || byteBuffer.capacity() < Constants.END_OF_MESSAGE.length) {
+			return false;
+		}
 		for (int ii = Constants.END_OF_MESSAGE.length - 1; ii >= 0; ii--) {
 			byte byte1 = Constants.END_OF_MESSAGE[ii];
 			byte byte2 = byteBuffer.get(byteBuffer.capacity() - 1);
