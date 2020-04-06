@@ -22,3 +22,5 @@ Both client and server sockets are agnostic regarding message format.  There onl
 ### Usage
 
 The class with the main method is the SocketRunner class. It takes an optional parameter to specify the port that the server will listen on.  If no port is passed in server defaults to port 6666.
+
+java -jar dschellberg-0.0.1-SNAPSHOT.jar

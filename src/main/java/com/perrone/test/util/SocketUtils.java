@@ -1,5 +1,6 @@
 package com.perrone.test.util;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 import com.perrone.test.Constants;
@@ -8,8 +9,8 @@ import com.perrone.test.exceptions.InvalidDataFormat;
 /**
  * @author dschellb
  * 
- * This the main utility class for the server and client. It deals with int and byte 
- * array conversion
+ *         This the main utility class for the server and client. It deals with
+ *         int and byte array conversion
  *
  */
 public class SocketUtils {
@@ -135,6 +136,18 @@ public class SocketUtils {
 			}
 		}
 		return retArray;
+	}
+
+	public static boolean endOfMessage(ByteBuffer byteBuffer) {
+		for (int ii = Constants.END_OF_MESSAGE.length - 1; ii >= 0; ii--) {
+			byte byte1 = Constants.END_OF_MESSAGE[ii];
+			byte byte2 = byteBuffer.get(byteBuffer.capacity() - 1);
+			if (byte2 != byte2) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 }

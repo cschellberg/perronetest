@@ -12,4 +12,6 @@ public class Constants {
 	public static final int BEGIN_DATA = 13;// integer 4 bytes
 	public static final int DEFAULT_PORT=6666;
 	public static final int INVALID_PORT_SPECIFIED = 1;
+	public static final int DEFAULT_PORT_CHANNEL = 6667;
+	public static final byte[] END_OF_MESSAGE="END OF MESSAGE".getBytes();
 }
