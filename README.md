@@ -28,3 +28,7 @@ java -jar dschellberg-0.0.1-SNAPSHOT.jar
 ### Addendum
 
 There is also an implementation use SocketChannels.  This should give greater throughput because there are ten channels processing requests.  When using the SocketChannel implementation and END_OF_MESSAGE must be added to the end of each message.  SocketRunner uses the standard socket implementation which does not require this.
+
+### Potential Optimization
+
+Client should have a blocking queue that feeds the SocketChannel client.  This channel should be non-blocking and never close until application shutdown.  This client will continually write to a server-side SocketChannel that always remains open as well.
